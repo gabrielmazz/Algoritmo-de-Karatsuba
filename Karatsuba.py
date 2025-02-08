@@ -1,3 +1,5 @@
+import argparse
+
 def karatsuba(x, y):
     # Caso base: se x ou y tiverem 1 dígito, multiplicamos diretamente
     if x < 10 or y < 10:
@@ -21,8 +23,13 @@ def karatsuba(x, y):
     # Combina os resultados usando a fórmula de Karatsuba
     return ac * 10**(2 * m) + ad_plus_bc * 10**m + bd
 
+# Recebe os argumentos da linha de comando do x e y
+parser = argparse.ArgumentParser()
+parser.add_argument("x", type=int, help="primeiro número")
+parser.add_argument("y", type=int, help="segundo número")
+args = parser.parse_args()
+
+
 # Exemplo de uso
-x = 1234
-y = 4321
-resultado = karatsuba(x, y)
-print(f"{x} * {y} = {resultado}")
+resultado = karatsuba(args.x, args.y)
+print(f"{args.x} * {args.y} = {resultado}")
